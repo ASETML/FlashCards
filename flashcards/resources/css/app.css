@@ -8,3 +8,23 @@ body {
   height: 100%;
   width: 100%;
 }
+
+header {
+  background-color: #cecece;
+}
+
+.logo {
+  width: 100px;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.headerMenuUser {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
