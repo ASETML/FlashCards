@@ -1,6 +1,7 @@
 @component('components/layout', { title: 'Login' })
 <h1>Connexion</h1>
 <form action="{{ route('login')}}" method="POST">
+    {{ csrfField() }}
     <div class="formLabel">
         <label>Utilisateur</label>
         <input type="text" id="username" name="username">
