@@ -6,9 +6,9 @@ export default class extends BaseSchema {
   async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('deck_id').notNullable()
-      table.string('title').notNullable()
+      table.string('title').notNullable().unique()
       table.string('description').nullable()
-      table.integer('integer').notNullable()
+      table.integer('difficulty').notNullable()
 
       //FK
       table.integer('user_fk').unsigned().references('user_id').inTable('t_user')
