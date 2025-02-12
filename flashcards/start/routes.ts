@@ -22,3 +22,7 @@ router
   .post('/login', [AuthController, 'handleLogin'])
   .as('auth.handleLogin')
   .use(middleware.guest())
+
+//Inscription
+router.on('/register').render('pages/register').as('register')
+router.post('/register', [AuthController, 'register']).as('auth.register')
