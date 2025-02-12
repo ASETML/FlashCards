@@ -48,3 +48,9 @@ form {
   color: red;
   font-weight: bold;
 }
+
+form a {
+  display: inline-block;
+  border: solid 1px #a3a3a3;
+  background-color: #dfdfdf;
+}

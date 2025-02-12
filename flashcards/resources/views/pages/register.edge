@@ -15,8 +15,9 @@
         <label>Répéter</label>
         <input type="password" id="repeat" name="repeat">
     </div>
-    <input id="submit" type="submit" value="Inscription Ready">
-</form>
+    <input id="submit" type="submit" value="S'inscrire">
+    <a id="inscription" href="{{ route('login') }}">Se connecter</a>
+</form>   
 
 <script>
     const submitBtn = document.getElementById("submit");
@@ -40,7 +41,4 @@
     repeat.addEventListener("input", validateForm);
     });
 </script>
-   
-<a href="{{ route('login') }}">Se connecter</a>
-
 @endcomponent
