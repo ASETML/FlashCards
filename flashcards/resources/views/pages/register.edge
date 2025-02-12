@@ -1,14 +1,11 @@
 @component('components/layout', { title: 'Register' })
-<h1>Connexion</h1>
+<h1>Inscription</h1>
 <form action="{{ route('auth.register')}}" method="POST">
     {{ csrfField() }}
     <div class="formLabel">
         <label>Utilisateur</label>
         <input type="text" id="username" name="username">
-    </div>
-    <div class="formLabel">
-        <label>Email</label>
-        <input type="email" id="email" name="email">
+        <p id=errorMessage>{{error || ""}}</p>
     </div>
     <div class="formLabel">
         <label>Mot de passe</label>

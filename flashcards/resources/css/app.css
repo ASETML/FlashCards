@@ -43,3 +43,8 @@ form {
   align-items: center;
   justify-content: center;
 }
+
+#errorMessage {
+  color: red;
+  font-weight: bold;
+}
