@@ -2,7 +2,7 @@
   <nav>
     <a href="{{ route('home') }}"><img class="logo" src="./img/logo.png" /></a>
     <div class="headerMenuUser">
-      <p>{{ username }}</p>
+      <p>{{ username || "Vous êtes déconnecté"}}</p>
       <a href="{{ route('login') }}">Se déconnecter</a>
     </div>
   </nav>
