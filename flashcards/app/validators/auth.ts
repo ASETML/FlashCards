@@ -1,5 +1,4 @@
 import vine from '@vinejs/vine'
-import { emit } from 'process'
 
 const loginUserValidator = vine.compile(
   vine.object({
@@ -10,7 +9,11 @@ const loginUserValidator = vine.compile(
 
 const registerUserValidator = vine.compile(
   vine.object({
-    username: vine.string(),
+    username: vine.string().unique(async (db, value, field) => {
+      const user = await db.from('t_user').where('username', value).first()
+      return !user
+    }),
+
     password: vine.string().minLength(8),
     repeat: vine.string(),
   })
