@@ -2,6 +2,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import { loginUserValidator, registerUserValidator } from '#validators/auth'
 import User from '#models/user'
 import { request } from 'http'
+import { error } from 'console'
 
 /**
  * Controller pour l'authentification
@@ -44,12 +45,17 @@ export default class AuthController {
   /**
    * Inscription
    */
-  async register({ request, response }: HttpContext) {
-    const { username, password } = await request.validateUsing(loginUserValidator)
+  async register({ request, response, view, session }: HttpContext) {
+    const data = request.only(['username', 'password', 'repeat'])
+    let payload
+    try {
+      payload = await registerUserValidator.validate(data)
+    } catch (er) {
+      console.log(er)
+      return view.render('pages/register', { error: 'Ce nom est déjà pris' })
+    }
+    const user = await User.create({ username: payload.username, password: payload.password })
 
-    const user = await User.create({ username: username, password: password })
-
-    console.log(user)
     return response.redirect().toRoute('home')
   }
 }
