@@ -1,6 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import { loginUserValidator } from '#validators/auth'
+import { loginUserValidator, registerUserValidator } from '#validators/auth'
 import User from '#models/user'
+import { request } from 'http'
 
 /**
  * Controller pour l'authentification
@@ -37,6 +38,18 @@ export default class AuthController {
     session.flash('success', "L'utilisateur s'est déconnecté avec succès")
 
     // Redirige la réponse sur la route 'home'
+    return response.redirect().toRoute('home')
+  }
+
+  /**
+   * Inscription
+   */
+  async register({ request, response }: HttpContext) {
+    const { username, password } = await request.validateUsing(loginUserValidator)
+
+    const user = await User.create({ username: username, password: password })
+
+    console.log(user)
     return response.redirect().toRoute('home')
   }
 }
