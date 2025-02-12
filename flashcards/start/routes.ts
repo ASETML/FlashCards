@@ -7,8 +7,9 @@
 |
 */
 
-import LoginController from '#controllers/login_controller'
+import AuthController from '#controllers/auth_controller'
 import router from '@adonisjs/core/services/router'
+import { middleware } from './kernel.js'
 
 //Route qui permet de revenir à l'accueil
 router.on('/').render('pages/home').as('home')
@@ -17,4 +18,7 @@ router.on('/').render('pages/home').as('home')
 router.on('/login').render('pages/login').as('login')
 
 //Connexion
-router.post('/login', [LoginController, 'login']).as('handleLogin')
+router
+  .post('/login', [AuthController, 'handleLogin'])
+  .as('auth.handleLogin')
+  .use(middleware.guest())
