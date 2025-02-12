@@ -15,7 +15,32 @@
         <label>Répéter</label>
         <input type="password" id="repeat" name="repeat">
     </div>
-    <input type="submit" value="Ok">
+    <input id="submit" type="submit" value="Inscription Ready">
 </form>
+
+<script>
+    const submitBtn = document.getElementById("submit");
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+    const repeat = document.getElementById("repeat");
+    submitBtn.style.display = "none"
+    document.addEventListener("DOMContentLoaded", function() {
+    
+    function validateForm() {
+        if (username.value.length > 0 && password.value.length >= 8 && repeat.value === password.value) {
+            submitBtn.style.display = "block";
+        }
+        else {
+            submitBtn.style.display = "none"
+        }
+    }
+    // Add event listeners to validate inputs in real-time
+    username.addEventListener("input", validateForm);
+    password.addEventListener("input", validateForm);
+    repeat.addEventListener("input", validateForm);
+    });
+</script>
+   
 <a href="{{ route('login') }}">Se connecter</a>
+
 @endcomponent
