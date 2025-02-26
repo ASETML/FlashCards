@@ -54,3 +54,11 @@ form a {
   border: solid 1px #a3a3a3;
   background-color: #dfdfdf;
 }
+
+/** {
+  transition: all 30s;
+}
+
+*:hover {
+  rotate: 0.5deg;
+}*/
