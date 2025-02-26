@@ -14,6 +14,8 @@ Projet de Alban Segalen pour P_Bulles 2
 
 ### Procédure d'installation
 
+- Cloner le repo [Flashcards](https://github.com/ASETML/Flashcards)
+
 - Ouvrir un cmd à la racine du projet
 
   - Dans le dossier `flashcards` (`cd flashcards`)
