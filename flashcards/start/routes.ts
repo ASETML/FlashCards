@@ -18,10 +18,7 @@ router.on('/').render('pages/home').as('home')
 router.on('/login').render('pages/login').as('login')
 
 //Connexion
-router
-  .post('/login', [AuthController, 'handleLogin'])
-  .as('auth.handleLogin')
-  .use(middleware.guest())
+router.post('/login', [AuthController, 'handleLogin']).as('auth.handleLogin')
 
 //Inscription
 router.on('/register').render('pages/register').as('register')

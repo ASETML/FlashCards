@@ -11,7 +11,7 @@ export default class extends BaseSchema {
       table.integer('difficulty').notNullable()
 
       //FK
-      table.integer('user_fk').unsigned().references('user_id').inTable('t_user')
+      table.integer('user_fk').unsigned().references('id').inTable('t_user')
       table.integer('theme_fk').unsigned().references('theme_id').inTable('t_theme')
 
       table.timestamp('created_at')
