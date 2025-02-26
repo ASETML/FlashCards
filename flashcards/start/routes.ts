@@ -8,6 +8,7 @@
 */
 
 import AuthController from '#controllers/auth_controller'
+import DecksController from '#controllers/decks_controller'
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 
@@ -26,3 +27,7 @@ router.post('/login', [AuthController, 'handleLogin']).as('auth.handleLogin')
 //Inscription
 router.on('/register').render('pages/register').as('register')
 router.post('/register', [AuthController, 'register']).as('auth.register')
+
+//Decks
+router.get('/decks', [DecksController, 'getDecks']).as('getDecks')
+router.get('/decks/create', [DecksController, 'store']).as('createDecks')
