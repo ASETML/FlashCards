@@ -25,8 +25,8 @@ export default class AuthController {
     session.flash('success', "L'utilisateur s'est connecté avec succès")
 
     // Redirige vers la route ayant pour nom 'home'
-    //return response.redirect().toRoute('home')
-    return view.render('pages/home', { username: username })
+    return response.redirect().toRoute('home')
+    //return view.render('pages/home', { username: username })
   }
 
   /**
@@ -57,7 +57,7 @@ export default class AuthController {
     }
     const user = await User.create({ username: payload.username, password: payload.password })
 
-    //return response.redirect().toRoute('home')
-    return view.render('pages/home', { username: payload.username })
+    return response.redirect().toRoute('home')
+    //return view.render('pages/home', { username: payload.username })
   }
 }
