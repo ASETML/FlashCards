@@ -1,6 +1,6 @@
 # Flashcards
 
-![alt text](./flashcards/public/img/logo.png "Logo de Flashcards")
+![Un fond jaune, avec flashcards écrit en bleu foncé sur un rectangle vert](./flashcards/public/img/logo.png "Logo de Flashcards")
 
 Projet de Alban Segalen pour P_Bulles 2
 
@@ -24,6 +24,9 @@ Projet de Alban Segalen pour P_Bulles 2
 
   - Executer `docker compose up -d`
   - Puis `docker exec -it Flashcards_db /bin/bash`
+    - Si ça ne fonctionne pas :
+      - Cliquez sur "OPEN IN TERMINAL"
+        ![Image de docker desktop avec une flèche qui pointe sur l'icône du terminal](./doc/docker-alternative.png "Alternative au cmd")
   - Puis `mysql -u root -proot`
   - Puis `create database db_flashcards;`
 
