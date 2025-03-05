@@ -30,4 +30,5 @@ router.post('/register', [AuthController, 'register']).as('auth.register')
 
 //Decks
 router.get('/decks', [DecksController, 'getDecks']).as('getDecks')
-router.get('/decks/create', [DecksController, 'store']).as('createDecks')
+router.get('/decks/new', [DecksController, 'create']).as('newDeck')
+router.post('/decks/create', [DecksController, 'store']).as('createDecks')

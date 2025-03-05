@@ -1,0 +1,21 @@
+@component('components/layout', { title: 'Login' })
+<h1>Nouveau Deck</h1>
+<form action="{{ route('createDecks')}}" method="POST">
+  {{ csrfField() }}
+  <div class="formLabel">
+    <label>Titre</label>
+    <input type="text" id="title" name="title" />
+  </div>
+  <div class="formLabel">
+    <label>Description</label>
+    <input type="text" id="description" name="description" />
+  </div>
+  <div class="formLabel">
+    <label>Difficulty</label>
+    <input type="number" id="difficulty" name="difficulty" />
+  </div>
+  <input type="submit" value="Ok" />
+  <a href="{{ route('home') }}">Abandonner</a>
+</form>
+
+@endcomponent
