@@ -55,6 +55,20 @@ form a {
   background-color: #dfdfdf;
 }
 
+.decksLign {
+  display: flex;
+  flex-direction: row;
+}
+
+.decks a {
+  cursor: pointer;
+}
+
+.decks {
+  display: flex;
+  flex-direction: column;
+}
+
 /** {
   transition: all 30s;
 }

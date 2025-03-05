@@ -29,6 +29,7 @@ export default class DecksController {
   async store({ auth, request, session, response }: HttpContext) {
     const { title, description, difficulty } = await request.validateUsing(createDeckValidator)
     const user_fk = await session.get('id')
+    console.log(user_fk)
     console.log(title, description, difficulty)
     await Deck.create({ title, description, difficulty, user_fk })
     // Afficher un message à l'utilisateur

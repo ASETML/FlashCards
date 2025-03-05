@@ -3,6 +3,8 @@ import { loginUserValidator, registerUserValidator } from '#validators/auth'
 import User from '#models/user'
 import { request } from 'http'
 import { error } from 'console'
+import { title } from 'process'
+import Deck from '#models/deck'
 
 /**
  * Controller pour l'authentification
@@ -18,13 +20,20 @@ export default class AuthController {
     // Récupère l'utilisateur correspondant aux données saisies par l'utilisateur
     const user = await User.verifyCredentials(username, password)
 
+    console.log(user.id)
+    await session.put('id', user.id)
     // Utilise le guard 'web' pour connecter l'utilisateur -> Voir le fichier config/auth.ts
     await auth.use('web').login(user)
-
     // Affiche un msg à l'utilsateur
     session.flash('success', "L'utilisateur s'est connecté avec succès")
 
+    const decks = await Deck.query().where('user_fk', '=', '1')
+    console.log(decks)
+
     // Redirige vers la route ayant pour nom 'home'
+    return view.render('pages/home', {
+      decks: decks,
+    })
     return response.redirect().toRoute('home')
     //return view.render('pages/home', { username: username })
   }
@@ -32,7 +41,7 @@ export default class AuthController {
   /**
    * Gérer la déconnexion d'un utilisateur
    */
-  async handleLogout({ auth, session, response }: HttpContext) {
+  async handleLogout({ view, auth, session, response }: HttpContext) {
     // Utilise le Guard 'web' pour déconnecter l'utilisateur -> Voir le fichier config/auth.ts
     await auth.use('web').logout()
 
