@@ -20,14 +20,14 @@ router.get('/home', [AccueilsController, 'home']).as('home').use(middleware.auth
 router.get('/', [AccueilsController, 'accueil']).as('homeDeco').use(middleware.auth())
 
 //Route qui permet de revenir au login
-router.on('/login').render('pages/login').as('login').use(middleware.auth())
+router.on('/login').render('pages/login').as('login')
 
 //Connexion
-router.post('/login', [AuthController, 'handleLogin']).as('auth.handleLogin').use(middleware.auth())
+router.post('/login', [AuthController, 'handleLogin']).as('auth.handleLogin')
 
 //Inscription
-router.on('/register').render('pages/register').as('register').use(middleware.auth())
-router.post('/register', [AuthController, 'register']).as('auth.register').use(middleware.auth())
+router.on('/register').render('pages/register').as('register')
+router.post('/register', [AuthController, 'register']).as('auth.register')
 
 //Decks
 router.get('/decks', [DecksController, 'getDecks']).as('getDecks').use(middleware.auth())
