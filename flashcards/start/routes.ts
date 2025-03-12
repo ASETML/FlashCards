@@ -14,24 +14,23 @@ import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 
 router.get('/accueil', [AccueilsController, 'accueil']).as('accueil').use(middleware.auth())
+router.get('/home', [AccueilsController, 'home']).as('home').use(middleware.auth())
 
 //Route qui permet de revenir à l'accueil
-router.on('/').render('pages/login').as('homeDeco')
+router.get('/', [AccueilsController, 'accueil']).as('homeDeco').use(middleware.auth())
 
 //Route qui permet de revenir au login
-router.on('/login').render('pages/login').as('login')
-
-//HomePage
-router.on('/home').render('pages/home').as('home')
+router.on('/login').render('pages/login').as('login').use(middleware.auth())
 
 //Connexion
-router.post('/login', [AuthController, 'handleLogin']).as('auth.handleLogin')
+router.post('/login', [AuthController, 'handleLogin']).as('auth.handleLogin').use(middleware.auth())
 
 //Inscription
-router.on('/register').render('pages/register').as('register')
-router.post('/register', [AuthController, 'register']).as('auth.register')
+router.on('/register').render('pages/register').as('register').use(middleware.auth())
+router.post('/register', [AuthController, 'register']).as('auth.register').use(middleware.auth())
 
 //Decks
 router.get('/decks', [DecksController, 'getDecks']).as('getDecks').use(middleware.auth())
 router.get('/decks/new', [DecksController, 'create']).as('newDeck').use(middleware.auth())
 router.post('/decks/create', [DecksController, 'store']).as('createDecks').use(middleware.auth())
+router.get('/showdeck/:id', [DecksController, 'show']).as('showDeck').use(middleware.auth())

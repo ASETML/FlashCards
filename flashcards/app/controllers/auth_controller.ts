@@ -31,10 +31,10 @@ export default class AuthController {
     console.log(decks)
 
     // Redirige vers la route ayant pour nom 'home'
-    return view.render('pages/home', {
+    /*return view.render('pages/home', {
       decks: decks,
-    })
-    return response.redirect().toRoute('home')
+    })*/
+    return response.redirect().toRoute('accueil')
     //return view.render('pages/home', { username: username })
   }
 

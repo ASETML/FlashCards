@@ -34,7 +34,7 @@ export default class DecksController {
     await Deck.create({ title, description, difficulty, user_fk })
     // Afficher un message à l'utilisateur
     session.flash('success', 'Le nouveau deck a été ajouté avec succès !')
-    return response.redirect().toRoute('home')
+    return response.redirect().toRoute('accueil')
   }
 
   /**
