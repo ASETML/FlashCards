@@ -22,7 +22,7 @@ export default class DecksController {
    * Display form to create a new record
    */
   async create({ view }: HttpContext) {
-    return view.render('pages/newDeck', { title: 'a' })
+    return view.render('pages/newDeck', { title: 'Nouveau Deck' })
   }
 
   /**
@@ -30,10 +30,22 @@ export default class DecksController {
    */
   async store({ auth, request, session, response }: HttpContext) {
     const { title, description, difficulty } = await request.validateUsing(createDeckValidator)
+    let deck
+    console.log(title)
+    if (title) {
+      deck = await Deck.query().where('title', '=', title)
+    }
+    if (description.length < 10) {
+      return response.redirect().toRoute('accueil')
+    }
+    if (deck) {
+      return response.redirect().toRoute('accueil')
+    }
+    console.log(title, description, difficulty)
     const user_fk = await session.get('id')
     console.log(user_fk)
-    console.log(title, description, difficulty)
     await Deck.create({ title, description, difficulty, user_fk })
+
     // Afficher un message à l'utilisateur
     session.flash('success', 'Le nouveau deck a été ajouté avec succès !')
     return response.redirect().toRoute('accueil')
