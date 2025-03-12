@@ -1,0 +1,16 @@
+@component('components/layout', { title: 'Accueil' })
+<div class="showDeck">
+  <a class="but">Exercer !!</a>
+  <h1>Deck: {{deck.title}}</h1>
+  <br>
+  <p>Description:  {{deck.description}}</p>
+  <br>
+  <p>Nombre de cartes: {{deck.difficulty}}
+    <br>
+  <a class="but">Modifier</a>
+  <a class="but">Supprimer</a>
+  <a class="but">Ajouter une carte</a>
+    
+</div>
+<a href="{{ route('accueil')}}" class="but">Accueil</a>
+@endcomponent

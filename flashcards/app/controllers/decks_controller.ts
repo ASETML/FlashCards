@@ -11,8 +11,10 @@ export default class DecksController {
   /**
    * Decks d'un utilisateur
    */
-  async getDecks({}: HttpContext) {
-    const decks = await Deck.query().where('user_fk', '=', '1')
+  async getDecks({ session }: HttpContext) {
+    const id = await session.get('id')
+    console.log(id)
+    const decks = await Deck.query().where('user_fk', '=', id)
     console.log(decks)
   }
 
@@ -40,7 +42,10 @@ export default class DecksController {
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {}
+  async show({ params, view }: HttpContext) {
+    const deck = await Deck.query().where('deck_id', params.id).firstOrFail()
+    return view.render('pages/showDeck', { deck })
+  }
 
   /**
    * Edit individual record
