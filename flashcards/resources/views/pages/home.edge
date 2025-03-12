@@ -1,17 +1,31 @@
 @component('components/layout', { title: 'Accueil' })
 <h1>Decks</h1>
 <div class="decks">
-    @foreach (deck in decks)
-<a class="decksLign">
-    @if(deck && deck.title && deck.description && deck.nb_carte)
-        <p>{{ deck.title }}</p>
-        <p>{{ deck.description }}</p>
-        <p>{{ deck.nb_carte }}</p>
-    @else
-        <p>Incomplete or empty deck data</p>
-    @endif
-</a>
-@endforeach
+        <table>
+          <thead>
+            <tr>
+              <th>Nom du deck</th>
+              <th>Description</th>
+              <th>Nombre de cartes</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if(decks && decks.length > 0)
+              @each(deck in decks)
+                <tr onclick="window.location.href = '/showdeck/{{ deck.id }}'" style="cursor: pointer;">
+                  <td>{{ deck.title }}</td>
+                  <td>{{ deck.description }}</td>
+                  <td>{{ deck.nbCards }}</td>
+                </tr>
+              @endeach
+            @else
+              <tr>
+                <td colspan="3">Aucun deck trouvé</td>
+              </tr>
+            @endif
+          </tbody>
+        </table>
+      </section>
     
 </div>
 @endcomponent
