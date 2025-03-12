@@ -34,16 +34,17 @@ export default class DecksController {
     console.log(title)
     if (title) {
       deck = await Deck.query().where('title', '=', title)
+      console.log(deck)
     }
     if (description.length < 10) {
       return response.redirect().toRoute('accueil')
     }
-    if (deck) {
+    if (deck.title) {
       return response.redirect().toRoute('accueil')
     }
     console.log(title, description, difficulty)
     const user_fk = await session.get('id')
-    console.log(user_fk)
+    console.log(user_fk, title, description, difficulty)
     await Deck.create({ title, description, difficulty, user_fk })
 
     // Afficher un message à l'utilisateur
