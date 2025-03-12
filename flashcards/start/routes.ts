@@ -34,3 +34,4 @@ router.get('/decks', [DecksController, 'getDecks']).as('getDecks').use(middlewar
 router.get('/decks/new', [DecksController, 'create']).as('newDeck').use(middleware.auth())
 router.post('/decks/create', [DecksController, 'store']).as('createDecks').use(middleware.auth())
 router.get('/showdeck/:id', [DecksController, 'show']).as('showDeck').use(middleware.auth())
+router.get('/delDeck/:id', [DecksController, 'destroy']).as('delDeck').use(middleware.auth())

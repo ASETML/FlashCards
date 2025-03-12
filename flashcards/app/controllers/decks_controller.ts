@@ -72,5 +72,10 @@ export default class DecksController {
   /**
    * Delete record
    */
-  async destroy({ params }: HttpContext) {}
+  async destroy({ params, response }: HttpContext) {
+    const deck = await Deck.findOrFail(params.id)
+
+    await deck.delete()
+    return response.redirect().toRoute('accueil')
+  }
 }

@@ -54,6 +54,7 @@ form a,
   display: inline-block;
   border: solid 1px #a3a3a3;
   background-color: #dfdfdf;
+  cursor: pointer;
 }
 
 .decksLign {
@@ -77,3 +78,25 @@ form a,
 *:hover {
   rotate: 0.5deg;
 }*/
+
+/* Style the popup */
+#popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Style the buttons in the popup */
+#popup button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

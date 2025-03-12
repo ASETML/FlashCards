@@ -12,10 +12,10 @@
           <tbody>
             @if(decks && decks.length > 0)
               @each(deck in decks)
-                <tr onclick="window.location.href = '/showdeck/{{ deck.id }}'" style="cursor: pointer;">
+                <tr onclick="window.location.href = '/showdeck/{{ deck.deck_id }}'" style="cursor: pointer;">
                   <td>{{ deck.title }}</td>
                   <td>{{ deck.description }}</td>
-                  <td>{{ deck.nbCards }}</td>
+                  <td>{{ deck.difficulty }}</td>
                 </tr>
               @endeach
             @else
@@ -28,4 +28,5 @@
       </section>
     
 </div>
+<a href="{{ route('newDeck')}}" class="but">Ajouter</a>
 @endcomponent

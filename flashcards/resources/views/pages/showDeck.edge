@@ -8,9 +8,22 @@
   <p>Nombre de cartes: {{deck.difficulty}}
     <br>
   <a class="but">Modifier</a>
-  <a class="but">Supprimer</a>
+  <a class="but" onclick="openPopup()">Supprimer</a>
   <a class="but">Ajouter une carte</a>
-    
+  <div id="popup">
+    <h2>Etes-vous sûr ?</h2>
+    <button onclick="closePopup()">Annuler</button>
+    <button onclick="window.location.href = '/delDeck/{{ deck.deck_id }}'">OK</button>
+  </div>
+  
+  <script>
+  function openPopup() {
+    document.getElementById("popup").style.display = "block";
+  }
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+  </script>
 </div>
 <a href="{{ route('accueil')}}" class="but">Accueil</a>
 @endcomponent
