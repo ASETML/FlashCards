@@ -27,9 +27,6 @@ export default class AuthController {
     // Affiche un msg à l'utilsateur
     session.flash('success', "L'utilisateur s'est connecté avec succès")
 
-    const decks = await Deck.query().where('user_fk', '=', '1')
-    console.log(decks)
-
     // Redirige vers la route ayant pour nom 'home'
     /*return view.render('pages/home', {
       decks: decks,
@@ -66,7 +63,7 @@ export default class AuthController {
     }
     const user = await User.create({ username: payload.username, password: payload.password })
 
-    return response.redirect().toRoute('home')
+    return response.redirect().toRoute('login')
     //return view.render('pages/home', { username: payload.username })
   }
 }

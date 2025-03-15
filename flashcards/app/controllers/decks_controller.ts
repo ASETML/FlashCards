@@ -11,11 +11,11 @@ export default class DecksController {
   /**
    * Decks d'un utilisateur
    */
-  async getDecks({ session }: HttpContext) {
-    const id = await session.get('id')
-    console.log(id)
+  public async getDecks(id: number) {
+    console.log('getDecks:' + id)
     const decks = await Deck.query().where('user_fk', '=', id)
-    console.log(decks)
+    console.log('getDecks: [' + decks + ']')
+    return decks
   }
 
   /**

@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Deck from '#models/deck'
+import DecksController from './decks_controller.js'
 export default class AccueilsController {
   /**
    * Display a list of resource
@@ -7,13 +8,14 @@ export default class AccueilsController {
   public async accueil({ auth, session, response, view }: HttpContextContract) {
     // Vérifie la session
     const userId = auth.user.id
-    console.log(userId)
     if (!userId) {
       return response.redirect('/login')
     }
 
     // Récupère les decks de l'utilisateur connecté
-    const decks = await Deck.query().where('user_fk', userId).orderBy('title', 'asc')
+    const controller = new DecksController()
+    const decks = await controller.getDecks(userId)
+    //const decks = await Deck.query().where('user_fk', userId).orderBy('title', 'asc')
 
     // Passe les decks à la vue
     return view.render('pages/home', { decks })
