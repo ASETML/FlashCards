@@ -63,12 +63,24 @@ export default class DecksController {
   /**
    * Edit individual record
    */
-  async edit({ params }: HttpContext) {}
+  async edit({ params, view }: HttpContext) {
+    const deck = await Deck.findOrFail(params.id)
+    return view.render('pages/editDeck', {deck})
+  }
 
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request }: HttpContext) {}
+  async update({ params, request, response }: HttpContext) {
+    const deck = await Deck.findOrFail(params.id)
+    const {title, description, difficulty} = await request.validateUsing(createDeckValidator)
+
+    if (deck) {
+      await deck.merge({ title, description, difficulty }).save()
+    }
+
+    return response.redirect().toRoute('accueil')
+  }
 
   /**
    * Delete record

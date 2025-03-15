@@ -30,8 +30,11 @@ router.on('/register').render('pages/register').as('register')
 router.post('/register', [AuthController, 'register']).as('auth.register')
 
 //Decks
-router.get('/decks', [DecksController, 'getDecks']).as('getDecks').use(middleware.auth())
 router.get('/decks/new', [DecksController, 'create']).as('newDeck').use(middleware.auth())
 router.post('/decks/create', [DecksController, 'store']).as('createDecks').use(middleware.auth())
 router.get('/showdeck/:id', [DecksController, 'show']).as('showDeck').use(middleware.auth())
 router.get('/delDeck/:id', [DecksController, 'destroy']).as('delDeck').use(middleware.auth())
+
+router.get('/editDecks/:id', [DecksController, 'edit']).as('editDeck').use(middleware.auth())
+
+router.post('/editDecks/:id', [DecksController, 'update']).as('updateDeck').use(middleware.auth())
