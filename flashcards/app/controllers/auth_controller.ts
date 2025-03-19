@@ -1,10 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { loginUserValidator, registerUserValidator } from '#validators/auth'
 import User from '#models/user'
-import { request } from 'http'
-import { error } from 'console'
-import { title } from 'process'
-import Deck from '#models/deck'
 
 /**
  * Controller pour l'authentification
@@ -13,7 +9,7 @@ export default class AuthController {
   /**
    * Gérer la connexion d'un utilisateur
    */
-  async handleLogin({ request, auth, session, response, view }: HttpContext) {
+  async handleLogin({ request, auth, session, response }: HttpContext) {
     // Récupère les données validées
     const { username, password } = await request.validateUsing(loginUserValidator)
 
@@ -38,7 +34,7 @@ export default class AuthController {
   /**
    * Gérer la déconnexion d'un utilisateur
    */
-  async handleLogout({ view, auth, session, response }: HttpContext) {
+  async handleLogout({ auth, session, response }: HttpContext) {
     // Utilise le Guard 'web' pour déconnecter l'utilisateur -> Voir le fichier config/auth.ts
     await auth.use('web').logout()
 
@@ -52,7 +48,7 @@ export default class AuthController {
   /**
    * Inscription
    */
-  async register({ request, response, view, session }: HttpContext) {
+  async register({ request, response, view }: HttpContext) {
     const data = request.only(['username', 'password', 'repeat'])
     let payload
     try {
@@ -62,7 +58,7 @@ export default class AuthController {
       return view.render('pages/register', { error: 'Ce nom est déjà pris' })
     }
     const user = await User.create({ username: payload.username, password: payload.password })
-
+    console.log(user)
     return response.redirect().toRoute('login')
     //return view.render('pages/home', { username: payload.username })
   }

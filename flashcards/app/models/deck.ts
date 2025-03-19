@@ -9,10 +9,10 @@ export default class Deck extends BaseModel {
   declare deck_id: number
 
   @column()
-  declare title: String
+  declare title: string
 
   @column()
-  declare description: String
+  declare description: string
 
   @column()
   declare difficulty: number
@@ -22,14 +22,16 @@ export default class Deck extends BaseModel {
   declare user_fk: number // Colonne correspondant à la clé étrangère
 
   @belongsTo(() => User)
-  public user: ReturnType<typeof belongsTo> // Relation vers le modèle User
+  //public user!: ReturnType<typeof belongsTo> // Relation vers le modèle User
+  public user!: any // Relation vers le modèle User
 
   //theme_fk
   @column()
   declare theme_fk: number // Colonne correspondant à la clé étrangère
 
   @belongsTo(() => Theme)
-  public theme: ReturnType<typeof belongsTo> // Relation vers le modèle Section
+  //public theme!: ReturnType<typeof belongsTo> // Relation vers le modèle Section
+  public theme!: any // Relation vers le modèle Section
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

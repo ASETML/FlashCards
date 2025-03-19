@@ -9,7 +9,7 @@ const loginUserValidator = vine.compile(
 
 const registerUserValidator = vine.compile(
   vine.object({
-    username: vine.string().unique(async (db, value, field) => {
+    username: vine.string().unique(async (db, value) => {
       const user = await db.from('t_user').where('username', value).first()
       return !user
     }),

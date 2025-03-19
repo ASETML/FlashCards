@@ -13,7 +13,7 @@ export default class DecksController {
    */
   public async getDecks(id: number) {
     console.log('getDecks:' + id)
-    const decks = await Deck.query().where('user_fk', '=', id)
+    const decks: Deck[] = await Deck.query().where('user_fk', '=', id)
     console.log('getDecks: [' + decks + ']')
     return decks
   }
@@ -28,18 +28,18 @@ export default class DecksController {
   /**
    * Handle form submission for the create action
    */
-  async store({ auth, request, session, response }: HttpContext) {
+  async store({ request, session, response }: HttpContext) {
     const { title, description, difficulty } = await request.validateUsing(createDeckValidator)
     let deck
     console.log(title)
     if (title) {
-      deck = await Deck.query().where('title', '=', title)
-      console.log(deck)
+      deck = await Deck.query().where('title', '=', title).first()
+      console.log(deck + 'TS ERROR')
     }
     if (description.length < 10) {
       return response.redirect().toRoute('accueil')
     }
-    if (deck.title) {
+    if (deck && deck.title) {
       return response.redirect().toRoute('accueil')
     }
     console.log(title, description, difficulty)
@@ -65,7 +65,7 @@ export default class DecksController {
    */
   async edit({ params, view }: HttpContext) {
     const deck = await Deck.findOrFail(params.id)
-    return view.render('pages/editDeck', {deck})
+    return view.render('pages/editDeck', { deck })
   }
 
   /**
@@ -73,7 +73,7 @@ export default class DecksController {
    */
   async update({ params, request, response }: HttpContext) {
     const deck = await Deck.findOrFail(params.id)
-    const {title, description, difficulty} = await request.validateUsing(createDeckValidator)
+    const { title, description, difficulty } = await request.validateUsing(createDeckValidator)
 
     if (deck) {
       await deck.merge({ title, description, difficulty }).save()
