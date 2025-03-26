@@ -11,7 +11,8 @@
     <input type="text" id="answer" name="answer" />
   </div>
   <input type="submit" value="Ok" />
-  <a href="{{ route('accueil') }}">Abandonner</a>
+  <p id="errorMessage">{{error || ""}}</p>
+  <a href="/showdeck/{{ deck.deck_id }}">Abandonner</a>
 </form>
 
 @endcomponent
