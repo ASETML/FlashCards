@@ -49,3 +49,4 @@ router
   .use(middleware.auth())
 router.get('/delCard/:id', [CardsController, 'destroy']).as('delCard').use(middleware.auth())
 router.get('/editCard/:id', [CardsController, 'edit']).as('editCard').use(middleware.auth())
+router.post('/editCard/:id', [CardsController, 'update']).as('updateCard').use(middleware.auth())

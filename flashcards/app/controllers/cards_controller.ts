@@ -61,7 +61,19 @@ export default class CardsController {
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request }: HttpContext) {}
+  async update({ params, request, response }: HttpContext) {
+    const card = await Card.findOrFail(params.id)
+    const { question, answer } = await request.validateUsing(createCardValidator)
+    console.log(question, answer, card)
+
+    if (question && answer) {
+      if (card) {
+        await card.merge({ question, answer }).save()
+      }
+
+      return response.redirect().toRoute('showDeck', { id: card.deck_fk })
+    }
+  }
 
   /**
    * Delete record
