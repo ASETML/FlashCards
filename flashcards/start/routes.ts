@@ -10,6 +10,7 @@
 import AuthController from '#controllers/auth_controller'
 import DecksController from '#controllers/decks_controller'
 import AccueilsController from '#controllers/accueils_controller'
+import CardsController from '#controllers/cards_controller'
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 
@@ -38,3 +39,10 @@ router.get('/delDeck/:id', [DecksController, 'destroy']).as('delDeck').use(middl
 router.get('/editDecks/:id', [DecksController, 'edit']).as('editDeck').use(middleware.auth())
 
 router.post('/editDecks/:id', [DecksController, 'update']).as('updateDeck').use(middleware.auth())
+
+//Cartes
+router.get('/decks/:id/newCard', [CardsController, 'create']).as('newCard').use(middleware.auth())
+router
+  .post('/decks/:id/newCard', [CardsController, 'store'])
+  .as('createCard')
+  .use(middleware.auth())

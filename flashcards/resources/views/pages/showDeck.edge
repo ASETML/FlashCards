@@ -9,7 +9,7 @@
     <br>
   <a class="but" href="/editDecks/{{ deck.deck_id }}">Modifier</a>
   <a class="but" onclick="openPopup()">Supprimer</a>
-  <a class="but">Ajouter une carte</a>
+  <a class="but" href="/decks/{{ deck.deck_id }}/newCard">Ajouter une carte</a>
   <div id="popup">
     <h2>Etes-vous sûr ?</h2>
     <button onclick="closePopup()">Annuler</button>

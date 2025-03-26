@@ -1,0 +1,17 @@
+@component('components/layout', { title: 'Login' })
+<h1>Nouvelle carte pour le Deck "{{ deck.title }}"</h1>
+<form action="/decks/{{ deck.deck_id }}/newCard" method="POST">
+  {{ csrfField() }}
+  <div class="formLabel">
+    <label>Question</label>
+    <input type="text" id="question" name="question" />
+  </div>
+  <div class="formLabel">
+    <label>Réponse</label>
+    <input type="text" id="answer" name="answer" />
+  </div>
+  <input type="submit" value="Ok" />
+  <a href="{{ route('accueil') }}">Abandonner</a>
+</form>
+
+@endcomponent
