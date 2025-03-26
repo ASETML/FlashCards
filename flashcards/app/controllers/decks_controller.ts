@@ -88,6 +88,11 @@ export default class DecksController {
    */
   async destroy({ params, response }: HttpContext) {
     const deck = await Deck.findOrFail(params.id)
+    const cards: Card[] = await Card.query().where('deck_fk', '=', params.id)
+    //Suppression si le deck a des cartes
+    for (let card of cards) {
+      await card.delete()
+    }
 
     await deck.delete()
     return response.redirect().toRoute('accueil')
