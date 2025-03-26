@@ -10,9 +10,9 @@ body {
   width: 100%;
 }
 
-header,
-footer {
+header {
   background-color: #cecece;
+  width: 100%;
 }
 
 .logo {
@@ -29,6 +29,17 @@ nav {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-right: 15%;
+  padding-right: 5%;
+  padding-left: 5%;
+  border-radius: 20px;
+  background-color: #dfdfdf;
+  transition: all 0.5s;
+}
+
+.headerMenuUser:hover {
+  background-color: #b6b6b6;
+  border-radius: 50px;
 }
 
 form {
@@ -109,4 +120,15 @@ form a,
   margin: 20px;
   border-radius: 20px;
   box-shadow: 10px 10px #4caf50;
+}
+
+.container {
+  width: 75%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
