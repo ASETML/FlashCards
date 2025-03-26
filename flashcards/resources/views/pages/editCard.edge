@@ -1,0 +1,17 @@
+@component('components/layout', { title: 'Edit Card' })
+<h1>Modifier une carte</h1>
+<form action="{{ route('updateCard', {id: card.card_id}) }}" method="POST">
+  {{ csrfField() }}
+  <div class="formLabel">
+    <label>Question</label>
+    <input type="text" id="question" name="question" value="{{ card.question }}" />
+  </div>
+  <div class="formLabel">
+    <label>Réponse</label>
+    <input type="text" id="answer" name="answer" value="{{ card.answer }}" />
+  </div>
+  <input type="submit" value="Ok" />
+  <a href="/decks/{{card.deck_fk}}/card/{{card.card_id}}">Abandonner</a>
+</form>
+
+@endcomponent
