@@ -15,6 +15,31 @@
     <button onclick="closePopup()">Annuler</button>
     <button onclick="window.location.href = '/delDeck/{{ deck.deck_id }}'">OK</button>
   </div>
+  <div class="cards">
+    <table>
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Réponse</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if(cards && cards.length > 0)
+          @each(card in cards)
+            <tr onclick="window.location.href = '/showdeck/{{ deck.deck_id }}'" style="cursor: pointer;">
+              <td>{{ card.question }}</td>
+              <td>{{ card.answer }}</td>
+            </tr>
+          @endeach
+        @else
+          <tr>
+            <td colspan="3">Aucun deck trouvé</td>
+          </tr>
+        @endif
+      </tbody>
+    </table>
+    </section>
+  </div>
   
   <script>
   function openPopup() {

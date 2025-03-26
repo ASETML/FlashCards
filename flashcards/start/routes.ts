@@ -42,6 +42,7 @@ router.post('/editDecks/:id', [DecksController, 'update']).as('updateDeck').use(
 
 //Cartes
 router.get('/decks/:id/newCard', [CardsController, 'create']).as('newCard').use(middleware.auth())
+router.get('/decks/:did/card/:cid', [CardsController, 'show']).as('showCard').use(middleware.auth())
 router
   .post('/decks/:id/newCard', [CardsController, 'store'])
   .as('createCard')

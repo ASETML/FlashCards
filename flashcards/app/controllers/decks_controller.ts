@@ -1,5 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Deck from '#models/deck'
+import Card from '#models/card'
 import { createDeckValidator } from '#validators/deck'
 
 export default class DecksController {
@@ -12,9 +13,7 @@ export default class DecksController {
    * Decks d'un utilisateur
    */
   public async getDecks(id: number) {
-    console.log('getDecks:' + id)
     const decks: Deck[] = await Deck.query().where('user_fk', '=', id)
-    console.log('getDecks: [' + decks + ']')
     return decks
   }
 
@@ -57,7 +56,9 @@ export default class DecksController {
    */
   async show({ params, view }: HttpContext) {
     const deck = await Deck.query().where('deck_id', params.id).firstOrFail()
-    return view.render('pages/showDeck', { deck })
+    const cards: Card[] = await Card.query().where('deck_fk', '=', params.id)
+
+    return view.render('pages/showDeck', { deck, cards })
   }
 
   /**

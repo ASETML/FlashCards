@@ -30,6 +30,8 @@ export default class CardsController {
   /**
    * Show individual record
    */
+  async show({ params, view }: HttpContext) {
+    return view.render('pages/newCard', { title: 'Nouvelle carte' })
   }
 
   /**
