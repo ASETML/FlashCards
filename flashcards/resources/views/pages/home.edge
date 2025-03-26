@@ -1,32 +1,31 @@
 @component('components/layout', { title: 'Accueil' })
 <h1>Decks</h1>
 <div class="decks">
-        <table>
-          <thead>
-            <tr>
-              <th>Nom du deck</th>
-              <th>Description</th>
-              <th>Nombre de cartes</th>
-            </tr>
-          </thead>
-          <tbody>
-            @if(decks && decks.length > 0)
-              @each(deck in decks)
-                <tr onclick="window.location.href = '/showdeck/{{ deck.deck_id }}'" style="cursor: pointer;">
-                  <td>{{ deck.title }}</td>
-                  <td>{{ deck.description }}</td>
-                  <td>{{ deck.difficulty }}</td>
-                </tr>
-              @endeach
-            @else
-              <tr>
-                <td colspan="3">Aucun deck trouvé</td>
-              </tr>
-            @endif
-          </tbody>
-        </table>
-      </section>
-    
+  <table>
+    <thead>
+      <tr>
+        <th>Nom du deck</th>
+        <th>Description</th>
+        <th>Nombre de cartes</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if(decks && decks.length > 0)
+        @each(deck in decks)
+          <tr onclick="window.location.href = '/showdeck/{{ deck.deck_id }}'" style="cursor: pointer;">
+            <td>{{ deck.title }}</td>
+            <td>{{ deck.description }}</td>
+            <td>{{ deck.difficulty }}</td>
+          </tr>
+        @endeach
+      @else
+        <tr>
+          <td colspan="3">Aucun deck trouvé</td>
+        </tr>
+      @endif
+    </tbody>
+  </table>
+  </section>
 </div>
 <a href="{{ route('newDeck')}}" class="but">Ajouter</a>
 @endcomponent
