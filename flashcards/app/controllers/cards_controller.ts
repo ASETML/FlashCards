@@ -45,7 +45,10 @@ export default class CardsController {
   /**
    * Show individual record
    */
-  async show({ params, view }: HttpContext) {}
+  async show({ params, view }: HttpContext) {
+    const card = await Card.query().where('card_id', params.cid).firstOrFail()
+    return view.render('pages/showCard', { card: card })
+  }
 
   /**
    * Edit individual record

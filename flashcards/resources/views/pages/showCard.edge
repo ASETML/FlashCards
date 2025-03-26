@@ -1,0 +1,41 @@
+@component('components/layout', { title: 'Cartes' })
+<div class="showDeck">
+  <p id="recto" onclick="returnCard()">Question: {{card.question}}</p>
+  <p id="verso" onclick="returnCard()">Réponse:  {{card.answer}}</p>
+  <br>
+  <a class="but" href="/editCard/{{ card.card_id }}">Modifier</a>
+  <a class="but" onclick="openPopup()">Supprimer</a>
+  <div id="popup">
+    <h2>Etes-vous sûr ?</h2>
+    <button onclick="closePopup()">Annuler</button>
+    <button onclick="window.location.href = '/delCard/{{ card.card_id }}'">OK</button>
+  </div>
+  
+  <script>
+    recto.style.display = "block"
+    verso.style.display = "none";
+  function openPopup() {
+    document.getElementById("popup").style.display = "block";
+  }
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+  function returnCard() {
+    let recto = document.getElementById("recto");
+    let verso = document.getElementById("verso");
+    
+    if (recto.style.display == "block") {
+      recto.style.display = "none";
+      verso.style.display = "block";
+    }
+
+    else if (verso.style.display == "block") {
+      recto.style.display = "block";
+      verso.style.display = "none";
+    }
+
+  }
+  </script>
+</div>
+<a href="/showdeck/{{ card.deck_fk }}" class="but">OK</a>
+@endcomponent

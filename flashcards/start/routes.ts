@@ -47,3 +47,4 @@ router
   .post('/decks/:id/newCard', [CardsController, 'store'])
   .as('createCard')
   .use(middleware.auth())
+router.get('/delCard/:id', [CardsController, 'destroy']).as('delCard').use(middleware.auth())

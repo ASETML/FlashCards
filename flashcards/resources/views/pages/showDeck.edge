@@ -26,7 +26,7 @@
       <tbody>
         @if(cards && cards.length > 0)
           @each(card in cards)
-            <tr onclick="window.location.href = '/showdeck/{{ deck.deck_id }}'" style="cursor: pointer;">
+            <tr onclick="window.location.href = '/decks/{{deck.deck_id}}/card/{{card.card_id}}'" style="cursor: pointer;">
               <td>{{ card.question }}</td>
               <td>{{ card.answer }}</td>
             </tr>
