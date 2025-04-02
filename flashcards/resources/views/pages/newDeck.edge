@@ -5,10 +5,12 @@
   <div class="formLabel">
     <label>Titre</label>
     <input type="text" id="title" name="title" />
+    <p id="errorMessage">{{titleError || ""}}</p>
   </div>
   <div class="formLabel">
     <label>Description</label>
     <input type="text" id="description" name="description" />
+    <p id="errorMessage">{{descError || ""}}</p>
   </div>
   <div class="formLabel">
     <label>Nombre de cartes</label>

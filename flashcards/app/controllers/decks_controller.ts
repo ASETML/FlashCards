@@ -27,19 +27,18 @@ export default class DecksController {
   /**
    * Handle form submission for the create action
    */
-  async store({ request, session, response }: HttpContext) {
+  async store({ request, session, response, view }: HttpContext) {
     const { title, description, difficulty } = await request.validateUsing(createDeckValidator)
     let deck
     console.log(title)
     if (title) {
       deck = await Deck.query().where('title', '=', title).first()
-      console.log(deck + 'TS ERROR')
     }
     if (description.length < 10) {
-      return response.redirect().toRoute('accueil')
+      return view.render('pages/newDeck', { descError: 'Description trop courte (<10 caractères)' })
     }
     if (deck && deck.title) {
-      return response.redirect().toRoute('accueil')
+      return view.render('pages/newDeck', { titleError: 'Ce deck existe déjà' })
     }
     console.log(title, description, difficulty)
     const user_fk = await session.get('id')
