@@ -4,6 +4,13 @@
 
 Projet de Alban Segalen pour P_Bulles 2
 
+## Table des matières
+
+- [Installation](https://github.com/ASETML/FlashCards?tab=readme-ov-file#installation)
+  - [Logiciels requis](https://github.com/ASETML/FlashCards?tab=readme-ov-file#logiciels-requis)
+  - [Procédure d'installation](https://github.com/ASETML/FlashCards?tab=readme-ov-file#proc%C3%A9dure-dinstallation)
+- [DBeaver](https://github.com/ASETML/FlashCards?tab=readme-ov-file#dbeaver)
+
 ## Installation
 
 ### Logiciels requis
@@ -39,7 +46,7 @@ Projet de Alban Segalen pour P_Bulles 2
 
 - Aller sur [localhost:3333](http://localhost:3333)
 
-### DBeaver
+## DBeaver
 
 - Téléchargez DBeaver [https://dbeaver.io/download/](https://dbeaver.io/download/)
 - J'utilise la version Community 25.0.1
