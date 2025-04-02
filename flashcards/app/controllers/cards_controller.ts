@@ -2,6 +2,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import Card from '#models/card'
 import Deck from '#models/deck'
 import { createCardValidator } from '#validators/card'
+import { title } from 'process'
 
 export default class CardsController {
   /**
@@ -23,20 +24,34 @@ export default class CardsController {
   async store({ params, request, response, view }: HttpContext) {
     const { question, answer } = await request.validateUsing(createCardValidator)
     const deck_fk = params.id
-    if (!question || question.length < 10 || !answer) {
+    if (!question || question.length < 10) {
       const deck = await Deck.query().where('deck_id', params.id).firstOrFail()
       return view.render('pages/newCard', {
         title: 'Nouvelle carte',
         deck: deck,
-        error:
-          'La question doit être au moins de 10 caractères et la réponse ne doit pas être vide',
+        error: 'La question doit être au moins de 10 caractères',
+      })
+    }
+
+    if (!answer) {
+      const deck = await Deck.query().where('deck_id', params.id).firstOrFail()
+      return view.render('pages/newCard', {
+        title: 'Nouvelle carte',
+        deck: deck,
+        error: 'La réponse ne doit pas être vide',
       })
     }
     const card = await Card.query().where('question', '=', question).first()
     console.log(card, question, answer)
 
     if (card && card.question) {
-      return response.redirect().toRoute('showDeck', { id: deck_fk })
+      //return response.redirect().toRoute('showDeck', { id: deck_fk })
+      const deck = await Deck.query().where('deck_id', params.id).firstOrFail()
+      return view.render('pages/newCard', {
+        title: 'Nouvelle carte',
+        deck,
+        questionError: 'Cette question existe déjà dans ce deck',
+      })
     }
     await Card.create({ question, answer, deck_fk })
     return response.redirect().toRoute('showDeck', { id: deck_fk })
