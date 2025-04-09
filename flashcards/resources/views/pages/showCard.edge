@@ -1,4 +1,7 @@
 @component('components/layout', { title: 'Cartes' })
+@if(flashMessages.has('sucess'))
+<div class="flash">{{ flashMessages.get('sucess') }}</div>
+@endif
 <div class="showDeck">
   <p id="recto" onclick="returnCard()">Question: {{card.question}}</p>
   <p id="verso" onclick="returnCard()">Réponse:  {{card.answer}}</p>

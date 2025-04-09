@@ -75,7 +75,7 @@ export default class CardsController {
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request, response }: HttpContext) {
+  async update({ params, request, response, session }: HttpContext) {
     const card = await Card.findOrFail(params.id)
     const { question, answer } = await request.validateUsing(createCardValidator)
     console.log(question, answer, card)
@@ -84,7 +84,7 @@ export default class CardsController {
       if (card) {
         await card.merge({ question, answer }).save()
       }
-
+      session.flash({ sucess: 'La carte à bien été modifiée' })
       return response.redirect().toRoute('showDeck', { id: card.deck_fk })
     }
   }
