@@ -1,4 +1,7 @@
 @component('components/layout', { title: 'Accueil' })
+@if(flashMessages.has('sucess'))
+<div class="flash">{{ flashMessages.get('sucess') }}</div>
+@endif
 <div class="showDeck">
   <a class="but">Exercer !!</a>
   <h1>Deck: {{deck.title}}</h1>

@@ -137,3 +137,14 @@ body {
 tr:hover {
   background-color: #ececec;
 }
+
+.flash {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  background-color: #00ac06;
+  border-radius: 50px;
+  margin: 10px;
+}

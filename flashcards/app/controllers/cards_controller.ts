@@ -2,7 +2,6 @@ import type { HttpContext } from '@adonisjs/core/http'
 import Card from '#models/card'
 import Deck from '#models/deck'
 import { createCardValidator } from '#validators/card'
-import { title } from 'process'
 
 export default class CardsController {
   /**
@@ -21,7 +20,7 @@ export default class CardsController {
   /**
    * Handle form submission for the create action
    */
-  async store({ params, request, response, view }: HttpContext) {
+  async store({ params, request, response, view, session }: HttpContext) {
     const { question, answer } = await request.validateUsing(createCardValidator)
     const deck_fk = params.id
     if (!question || question.length < 10) {
@@ -45,7 +44,6 @@ export default class CardsController {
     console.log(card, question, answer)
 
     if (card && card.question) {
-      //return response.redirect().toRoute('showDeck', { id: deck_fk })
       const deck = await Deck.query().where('deck_id', params.id).firstOrFail()
       return view.render('pages/newCard', {
         title: 'Nouvelle carte',
@@ -54,6 +52,7 @@ export default class CardsController {
       })
     }
     await Card.create({ question, answer, deck_fk })
+    session.flash({ sucess: 'La carte à bien été crée' })
     return response.redirect().toRoute('showDeck', { id: deck_fk })
   }
 
