@@ -46,7 +46,7 @@ export default class DecksController {
     await Deck.create({ title, description, difficulty, user_fk })
 
     // Afficher un message à l'utilisateur
-    session.flash('success', 'Le nouveau deck a été ajouté avec succès !')
+    session.flash('sucess', 'Le nouveau deck a été ajouté avec succès !')
     return response.redirect().toRoute('accueil')
   }
 
@@ -71,7 +71,7 @@ export default class DecksController {
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request, response }: HttpContext) {
+  async update({ params, request, response, session }: HttpContext) {
     const deck = await Deck.findOrFail(params.id)
     const { title, description, difficulty } = await request.validateUsing(createDeckValidator)
 
@@ -79,13 +79,14 @@ export default class DecksController {
       await deck.merge({ title, description, difficulty }).save()
     }
 
+    session.flash('sucess', 'Le nouveau deck a été modifié avec succès !')
     return response.redirect().toRoute('accueil')
   }
 
   /**
    * Delete record
    */
-  async destroy({ params, response }: HttpContext) {
+  async destroy({ params, response, session }: HttpContext) {
     const deck = await Deck.findOrFail(params.id)
     const cards: Card[] = await Card.query().where('deck_fk', '=', params.id)
     //Suppression si le deck a des cartes
@@ -94,6 +95,7 @@ export default class DecksController {
     }
 
     await deck.delete()
+    session.flash('sucess', 'Le nouveau deck a été supprimé avec succès !')
     return response.redirect().toRoute('accueil')
   }
 }
