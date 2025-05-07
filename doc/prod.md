@@ -18,3 +18,9 @@ variables
 at anonymous start/env.ts:11
 
 Erreur: n'arrive pas à se connecter à la DB
+
+Autre site
+railway.com
+
+Autre site
+~~fly.io~~
