@@ -4,7 +4,7 @@ FROM node:20.11.1-alpine3.19
 WORKDIR /app
 
 # Copie des fichiers de configuration
-COPY package.json package-lock.json* ./
+COPY package.json ./
 
 # Installation des dépendances avec npm directement
 RUN npm install
