@@ -19,12 +19,11 @@ RUN ls -la /usr/local/bin/docker-entrypoint.sh
 # Copie du code source
 COPY . .
 
-# Construction de l'application en ignorant les erreurs TypeScript
-RUN NODE_ENV=production node ace build --ignore-ts-errors
-
 # Exposition du port
 EXPOSE 3333
 
 # Exécuter le script directement avec le chemin complet
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-CMD ["node", "build/bin/server.js"]
+
+# RUN npm run dev
+# CMD ["npm", "run", "dev"]
