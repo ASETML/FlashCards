@@ -2,12 +2,8 @@
 set -e
 
 # Attendre que MySQL soit prêt
-echo "Attente du démarrage de MySQL..."
-sleep 60
-until [ "`docker inspect -f {{.State.Running}} db_adonis`"=="true" ]; do
-    sleep 0.1;
-done;
-
+echo "Attente du démarrage de PostGres..."
+sleep 6
 
 # Exécuter les migrations
 echo "Exécution des migrations..."
