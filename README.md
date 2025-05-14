@@ -11,6 +11,26 @@ Projet de Alban Segalen pour P_Bulles 2
   - [Procédure d'installation](https://github.com/ASETML/FlashCards?tab=readme-ov-file#proc%C3%A9dure-dinstallation)
 - [DBeaver](https://github.com/ASETML/FlashCards?tab=readme-ov-file#dbeaver)
 
+## Environnements
+
+### Développement
+
+L'environnement utilisé pour le développement de l'application
+
+#### Description
+
+Prérequis : nodejs, npm, docker desktop
+
+#### Installation
+
+### Staging
+
+Il est prévu de mettre en place un environnement de test pour tester l'application avant de la mettre en production.
+
+### Production
+
+L'environnement de production. https://flashcards-itg2.onrender.com/
+
 ## Installation
 
 ### Logiciels requis
