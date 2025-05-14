@@ -21,14 +21,7 @@ services:
       APP_KEY: mW05cR0lsyP3MtggpnNawWhN3gfAspQF
       NODE_ENV: development
       SESSION_DRIVER: cookie
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_USER: root
-      DB_PASSWORD: root
-      DB_DATABASE: db_flashcards
     volumes:
       - ./:/app
       - /app/node_modules
-    depends_on:
-      - db
     command: sh -c "sleep 10 && node ace migration:fresh --force && npm run dev"

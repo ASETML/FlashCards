@@ -2,8 +2,8 @@
 set -e
 
 # Attendre que MySQL soit prêt
-echo "Attente du démarrage de MySQL..."
-sleep 60
+echo "Attente du démarrage de PostGres..."
+sleep 6
 
 # Exécuter les migrations
 echo "Exécution des migrations..."
