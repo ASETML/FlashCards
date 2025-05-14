@@ -6,6 +6,12 @@ WORKDIR /app
 # Copie des fichiers de configuration
 COPY package.json ./
 
+# Copie du code source
+COPY . .
+
+RUN rm -rf ./node_modules
+RUN rm -rf ./package-lock.json
+
 # Installation des dépendances avec npm directement
 RUN npm install
 
@@ -16,8 +22,7 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 # Vérifier que le script existe bien et est exécutable
 RUN ls -la /usr/local/bin/docker-entrypoint.sh
 
-# Copie du code source
-COPY . .
+
 
 # Exposition du port
 EXPOSE 3333
