@@ -24,4 +24,4 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
-    command: sh -c "sleep 10 && npm run build && cd build && npm ci --omit='dev' && node bin/server.js"
+    command: sh -c "echo 'Attente du démarrage de PostGres...' && sleep 10 && echo 'Exécution des migrations...' && node ace migration:run --force && echo 'Exécution des seeds...' && node ace db:seed && npm run build && cd build && npm ci --omit='dev' && node bin/server.js"
