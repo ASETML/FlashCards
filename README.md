@@ -175,9 +175,15 @@ Il est prévu de mettre en place un environnement de test pour tester l'applicat
 
 ## Production
 
-L'environnement de production. https://flashcards-itg2.onrender.com/
+L'environnement de production est disponible à l'adresse https://flashcards-itg2.onrender.com/
+
+Pour mettre en production l'application à votre tour, voici les étapes à suivres
 
 ### Installation
+
+#### Prérequis
+
+- Avoir un compte sur [Render](https://render.com)
 
 # DBeaver
 
