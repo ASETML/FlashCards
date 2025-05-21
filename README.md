@@ -59,19 +59,42 @@ cd Docker_Postgres
 docker-compose up -d
 ```
 
+> Cette opération prend un peu de temps
+
 - Accéder au conteneur:
 
 ```sh
 docker exec -it Flashcards_db /bin/bash
 ```
 
-> Ne fonctionne pas dans un git bash
+> Ne fonctionne pas dans un git bash, à la place: <br>
+> Cliquez sur "OPEN IN TERMINAL"
+> ![Image de docker desktop avec une flèche qui pointe sur l'icône du terminal](./doc/docker-alternative.png "Alternative au cmd pour entrer dans le conteneur postgres")
 
 - Puis, dans l'invite de commande du conteneur:
 
+- Se connecter à l'utilisateur postgres :
+
 ```sh
 su postgres
+```
+
+- Créer la base de données :
+
+```sh
 createdb db_flashcards
+```
+
+- Se déconnecter de l'utilisateur postgres :
+
+```sh
+exit
+```
+
+- Sortir du conteneur :
+
+```sh
+exit
 ```
 
 La base de données est maintenant créée et démarrée
@@ -92,6 +115,8 @@ cd ../flashcards
 npm install
 ```
 
+> Cette opération prend un peu de temps
+
 ### Etape 4
 
 Il vous faut compléter les secrets de l'application.
@@ -100,17 +125,25 @@ Toujours dans le dossier `flashcards`
 
 - Renommer le `.env.example` en `.env`
 
-```sh
-mv .env.example .env
-```
+  - Depuis un cmd windows :
 
-- Vous aurez peut-être besoin d'adapter les informations du .env. Pour cela, il vous suffit d'éditer le fichier avec votre éditeur de texte préferé
+  ```cmd
+  rename .env.example .env
+  ```
+
+  - Depuis un terminal
+
+  ```sh
+  mv .env.example .env
+  ```
 
 - Il faut ensuite générer APP_KEY:
 
 ```sh
 node ace generate:key
 ```
+
+> Vous aurez peut-être besoin d'adapter les informations du .env. Pour cela, il vous suffit d'éditer le fichier avec votre éditeur de texte préferé.
 
 Les secrets de l'application sont maintenant renseigné.
 
@@ -126,7 +159,15 @@ Toujours dans le dossier `flashcards`
 node ace migration:fresh
 ```
 
-L'application est maintenant démarrée
+#### Etape 6
+
+Il faut démarrer l'application:
+
+```sh
+npm run dev
+```
+
+L'application est maintenant démarrée. Bon développement !
 
 ## Staging
 
@@ -137,39 +178,6 @@ Il est prévu de mettre en place un environnement de test pour tester l'applicat
 L'environnement de production. https://flashcards-itg2.onrender.com/
 
 ### Installation
-
-## Logiciels requis
-
-- NodeJs: v20.11.0
-- npm: v10.2.4
-- Docker Desktop: v4.10.0
-
-## Procédure d'installation
-
-- Cloner le repo [Flashcards](https://github.com/ASETML/Flashcards)
-
-- Ouvrir un cmd à la racine du projet
-
-  - Dans le dossier `flashcards` (`cd flashcards`)
-  - Executer `npm install`
-  - Puis `node ace generate:key`
-
-- Dans le dossier `Docker_MySQL` (`cd ../Docker_MySQL`)
-
-  - Executer `docker compose up -d`
-  - Puis `docker exec -it Flashcards_db /bin/bash`
-    - Si ça ne fonctionne pas :
-      - Cliquez sur "OPEN IN TERMINAL"
-        ![Image de docker desktop avec une flèche qui pointe sur l'icône du terminal](./doc/docker-alternative.png "Alternative au cmd")
-  - Puis `mysql -u root -proot`
-  - Puis `create database db_flashcards;`
-
-- Dans le dossier `flashcards` (`cd ../flashcards`)
-
-  - Ensuite `node ace migration:fresh`
-  - Puis `npm run dev`
-
-- Aller sur [localhost:3333](http://localhost:3333)
 
 # DBeaver
 
