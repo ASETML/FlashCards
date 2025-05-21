@@ -22,8 +22,6 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 # Vérifier que le script existe bien et est exécutable
 RUN ls -la /usr/local/bin/docker-entrypoint.sh
 
-
-
 # Exposition du port
 EXPOSE 3333
 

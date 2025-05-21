@@ -1,0 +1,22 @@
+# Creation date : 22.08.2022
+# Created by : Alban Segalen (from the Mysql docker-compose by CSR)
+# Description : Create a postgresql database container
+
+version: "3.3"
+
+services:
+  db:
+    image: postgres
+    container_name: Flashcards_db
+    environment:
+        POSTGRES_PASSWORD: example
+        POSTGRES_USER: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+# The database will be persistent among containers restarts.
+volumes:
+  dbdata:
