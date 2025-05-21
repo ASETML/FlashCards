@@ -24,4 +24,4 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
-    command: sh -c "sleep 10 && node ace migration:fresh --force && npm run build && cd build && npm ci --omit='dev' && node bin/server.js"
+    command: sh -c "sleep 10 && npm run build && cd build && npm ci --omit='dev' && node bin/server.js"

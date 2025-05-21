@@ -27,6 +27,3 @@ EXPOSE 3333
 
 # Exécuter le script directement avec le chemin complet
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-
-# RUN npm run dev
-# CMD ["npm", "run", "dev"]

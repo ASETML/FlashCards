@@ -12,7 +12,3 @@ node ace migration:run --force
 # Exécuter les seeds
 echo "Exécution des seeds..."
 node ace db:seed
-
-# Démarrer l'application
-echo "Démarrage de l'application..."
-npm run dev
