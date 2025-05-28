@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-# Attendre que MySQL soit prêt
+# Attendre que PostGres soit prêt
 echo "Attente du démarrage de PostGres..."
 sleep 6
 
