@@ -177,9 +177,20 @@ Il est prévu de mettre en place un environnement de test pour tester l'applicat
 
 L'environnement de production est disponible à l'adresse https://flashcards-itg2.onrender.com/
 
-Pour mettre en production l'application à votre tour, voici les étapes à suivres
+L'application est déployée sur [Render](https://render.com)
 
 ### Installation
+
+Pour mettre en production l'application à votre tour, voici les étapes à suivres
+
+Création de la db
+créez un nouveau service de type postgres
+
+> Attention à la région -> Les services ne peuvent communiquer entre eux que si ils ont la même région
+
+Création de l'app
+
+Variables d'environnement
 
 #### Prérequis
 
