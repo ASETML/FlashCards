@@ -175,7 +175,7 @@ Il est prévu de mettre en place un environnement de test pour tester l'applicat
 
 ## Production
 
-L'environnement de production est disponible à l'adresse https://flashcards-itg2.onrender.com/
+L'environnement de production est disponible à l'adresse https://flashcards-itg2.onrender.com/.
 
 L'application est déployée sur [Render](https://render.com)
 
