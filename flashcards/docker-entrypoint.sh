@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-# Attendre que PostGres soit prêt
+# Attendre que MySQL soit prêt
 echo "Attente du démarrage de PostGres..."
 sleep 6
 
@@ -12,3 +12,10 @@ node ace migration:run --force
 # Exécuter les seeds
 echo "Exécution des seeds..."
 node ace db:seed
+
+# Démarrer l'application
+echo "Démarrage de l'application..."
+npm run build
+cd build 
+npm ci --omit='dev'
+node bin/server.js

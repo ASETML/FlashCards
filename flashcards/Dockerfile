@@ -16,27 +16,14 @@ RUN rm -rf ./package-lock.json
 RUN npm install
 
 # Copie du script d'entrée avant la construction
-# COPY docker-entrypoint.sh /usr/local/bin/
-# RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Vérifier que le script existe bien et est exécutable
-# RUN ls -la /usr/local/bin/docker-entrypoint.sh
-
-# Attendre que PostGres soit prêt
-RUN echo "Attente du démarrage de PostGres..."
-RUN sleep 6
-
-# Exécuter les migrations
-RUN echo "Exécution des migrations..."
-RUN node ace migration:run --force
-
-# Exécuter les seeds
-RUN echo "Exécution des seeds..."
-RUN node ace db:seed
-
+RUN ls -la /usr/local/bin/docker-entrypoint.sh
 
 # Exposition du port
 EXPOSE 3333
 
 # Exécuter le script directement avec le chemin complet
-# ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
