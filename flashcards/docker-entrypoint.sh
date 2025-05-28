@@ -16,6 +16,10 @@ node ace db:seed
 # Démarrer l'application
 echo "Démarrage de l'application..."
 npm run build
-cd build 
+mkdir ./build/resources/css
+cp ./resources/css/app.css ./build/resources/css/app.css
+mkdir ./build/resources/js
+cp ./resources/js/app.js ./build/resources/js/app.js
+cd build
 npm ci --omit='dev'
 node bin/server.js
