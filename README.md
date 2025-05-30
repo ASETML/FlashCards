@@ -2,18 +2,21 @@
 
 ![Un fond jaune, avec flashcards écrit en bleu foncé sur un rectangle vert](./flashcards/public/img/logo.png "Logo de Flashcards")
 
-Projet de Alban Segalen pour P_Bulles 2
+Projet de Alban Segalen pour P_Bulles 3
 
 # Table des matières
 
-- [Installation](#installation)
-  - [Logiciels requis](#logiciels-requis)
-  - [Procédure d'installation](#proc%C3%A9dure-dinstallation)
+- [Environnements](#environnements)
+  - [Développement](#d%C3%A9veloppement)
+    - [Installation](#installation)
+  - [Staging](#staging)
+  - [Production](#production)
+    - [Installation](#installation-1)
 - [DBeaver](#dbeaver)
 
 # Environnements
-
-![Un fond jaune, avec flashcards écrit en bleu foncé sur un rectangle vert](./doc/schemas.drawio.png "Logo de Flashcards")
+Voici un schéma des différents environnements.
+![](./doc/schemas.drawio.png)
 
 ## Développement
 
@@ -158,6 +161,7 @@ Toujours dans le dossier `flashcards`
 ```sh
 node ace migration:fresh
 ```
+Vous pouvez vérifier que les tables ont bien été crées avec [DBeaver](#dbeaver).
 
 #### Etape 6
 
@@ -183,18 +187,118 @@ L'application est déployée sur [Render](https://render.com)
 
 Pour mettre en production l'application à votre tour, voici les étapes à suivres
 
-Création de la db
-créez un nouveau service de type postgres
+#### Création du compte
+
+Si vous n'avez pas de compte sur [Render](https://render.com), en créer un. Choisir le plan gratuit.
+![](./doc/render1.png)
+
+#### Création de la db
+Depuis la page d'accueil, créez un nouveau service de type postgres.
+![](./doc/render2.png)
+
+Configurez ensuite le service. Choisir le plan gratuit.
+![](./doc/render3.png)
+![](./doc/render4.png)
+![](./doc/render5.png)
 
 > Attention à la région -> Les services ne peuvent communiquer entre eux que si ils ont la même région
 
-Création de l'app
+Cliquez sur `Create Database`
 
-Variables d'environnement
+![](./doc/render6.png)
+![](./doc/render7.png)
 
-#### Prérequis
+La base de données est maintenant créée.
 
-- Avoir un compte sur [Render](https://render.com)
+#### Création de l'app
+Depuis la page d'accueil, ajouter un nouveau service de type `Web Service`.
+![](./doc/render8.png)
+
+Connectez ensuite votre compte [github](https://github.com), vous en aurez besoin pour déployer l'application automatiquement à chaque commit. Vous pouvez ajouter Render à un seul repository ou à tous vos repository. 
+![](./doc/render9.png)
+
+Selectionner le repo [Flashcards](https://github.com/ASETML/FlashCards)
+![](./doc/render10.png)
+
+Configurez votre service. Choissisez `Docker comme langage`. Spécifier bien l'emplacement de la l'application dans le repo dans le champs `Root Directory`. Choissisez le plan gratuit.
+![](./doc/render11.png)
+![](./doc/render12.png)
+> Choissisez bien la même région que la base de données
+
+#### Variables d'environnement
+L'application a besoin de variables d'environnement pour fonctionner: voici comment les spécifier.
+
+Sur la page du `Web Service`, allez dans l'onglet `Environment`.
+
+![](./doc/render13.png)
+
+Cliquez sur `Add` -> `From .env`.
+
+![](./doc/render14.png)
+
+ Chargez le  [`.env.example`](./flashcards/.env.example)
+
+![](./doc/render15.png)
+
+Cliquez sur `Add variables`.
+
+![](./doc/render16.png)
+
+Vous devriez avoir le résultats suivant
+
+![](./doc/render17.png)
+
+Complétez les informations manquantes: `HOST` doit être `0.0.0.0`. Pour Générer `APP_KEY`, cliquez sur `Generate`. Completez les variables `DB_*` selon les informations du service Postgres.
+
+| Web Service | Postgres |
+| -------- | --- |
+| DB_DATABASE | Database |
+| DB_HOST | Hostname |
+| DB_PASSWORD | Password |
+| DB_PORT | Username |
+| DB_USER | Username |
+
+![](./doc/render18.png)
+
+Cliquez sur `Save, Build and Deploy` pour déployer votre application. Vous pouvez y accéder en utilisant l'url en dessous du nom de votre service.
+
+![](./doc/render19.png)
+
+Si en allant sur votre application vous avez une erreur `Blocked request. This host ("flashcards-1-8dam.onrender.com") is not allowed.`, vous devez ajouter le nom de domaine dans le fichier `vite.config.ts`. Par example:
+
+![](./doc/render20.png)
+
+Si l'élèment `allowedHosts` n'est pas présent, ajouter le comme suit.
+```ts
+server: {
+    allowedHosts: ['flashcards-itg2.onrender.com'],
+  },
+```
+
+```ts
+import { defineConfig } from 'vite'
+import adonisjs from '@adonisjs/vite/client'
+
+export default defineConfig({
+  server: {
+    allowedHosts: ['flashcards-itg2.onrender.com'],
+  },
+  plugins: [
+    adonisjs({
+      /**
+       * Entrypoints of your application. Each entrypoint will
+       * result in a separate bundle.
+       */
+      entrypoints: ['resources/css/app.css', 'resources/js/app.js'],
+
+      /**
+       * Paths to watch and reload the browser on file change
+       */
+      reload: ['resources/views/**/*.edge'],
+    }),
+  ],
+})
+```
 
 # DBeaver
 
